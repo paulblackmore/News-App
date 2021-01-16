@@ -1,5 +1,23 @@
 .container {
 	width: 20%;
 	height: 100vh;
-	background: #eee;
+	background: rgb(48, 48, 48);
+	padding: 5px;
+}
+
+.btn {
+	width: 100%;
+	background: transparent;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px transparent solid;
+	border-radius: 5px;
+}
+
+.btn:hover {
+	background: #292929;
+	border: 1px rgb(255, 112, 17) solid;
 }
