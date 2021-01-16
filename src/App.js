@@ -19,12 +19,10 @@ const App = () => {
 	const selectCountry = (event) => setCountry(event.target.value);
 
   const loadHeadlines = async() => {
-		let articles = await getHeadlines(country);
-		setArticles(articles)
+		let data = await getHeadlines(country);
+		setArticles(data.articles)
 	}
 	
-	console.log('check', articles)
-
   return (
     <div className="App">
       <SidePanel 

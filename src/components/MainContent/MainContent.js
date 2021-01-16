@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import Article from '../Article/Article';
 import classes from './MainContent.module.css';
 
-
-const MainContent = ({ isOpen, toggleMenu }) => {
-
-	useEffect(() => {
-
-	}, [])
+const MainContent = ({ isOpen, toggleMenu, articles }) => {
 
 	return(
     <div className={classes.container}>
@@ -16,6 +12,14 @@ const MainContent = ({ isOpen, toggleMenu }) => {
 					<BurgerMenu />
 				</div>
 			}
+			{articles.length > 0 && articles.map((article, index) => {
+				return(
+					<Article 
+						key={index} 
+						article={article} 
+					/>
+				)
+			})}
 		</div>
 	)
 }
