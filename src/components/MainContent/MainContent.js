@@ -7,11 +7,18 @@ const MainContent = ({ isOpen, toggleMenu, articles }) => {
 
 	return(
     <div className={classes.container}>
-			{!isOpen && 
-				<div className={classes.menu} onClick={toggleMenu}>
-					<BurgerMenu />
+			<header>
+				{!isOpen && 
+					<div className={classes.menu} onClick={toggleMenu}>
+						<BurgerMenu />
+					</div>
+				}
+				<div className={classes.pagination}>
+					<button>Back</button>
+					<button>Next</button>
 				</div>
-			}
+
+			</header>
 			<section>
 				{articles.length > 0 && articles.map((article, index) => {
 					return(
