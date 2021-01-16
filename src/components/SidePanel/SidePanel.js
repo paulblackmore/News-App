@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { getHeadlines } from '../../service/service';
 import classes from './SidePanel.module.css';
 
 const countries = [
@@ -16,17 +15,7 @@ const countries = [
 	'co'
 ]
 
-const SidePanel = ({ isOpen, toggleMenu }) => {
-	const [search, setSearch] = useState('');
-	const [country, setCountry] = useState('au');
-
-	useEffect(() => {
-		getHeadlines(country)
-	}, [country])
-
-	const searchArticles = (event) => setSearch(event.target.value);
-	const selectCountry = (event) => setCountry(event.target.value);
-
+const SidePanel = ({ isOpen, toggleMenu, searchArticles, selectCountry }) => {
 	return !isOpen ? null : (
     <div className={classes.container}>
 			<div className={classes.header}>
