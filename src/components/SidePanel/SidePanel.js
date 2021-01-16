@@ -29,6 +29,9 @@ const SidePanel = () => {
 
 	return(
     <div className={classes.container}>
+			<div className={classes.header}>
+				<button>Close menu</button>
+			</div>
 			<input 
 				placeholder="Search articles..."
 				onChange={searchArticles}

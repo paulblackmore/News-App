@@ -3,11 +3,22 @@
 	height: 98vh;
 	background: rgb(48, 48, 48);
 	padding: 10px;
-	display: none;
 }
 
 .container * {
 	margin-bottom: 15px;
+}
+
+.header {
+	margin-bottom: 50px;
+	text-align: right;
+}
+
+button {
+	color: #fff;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 input {
