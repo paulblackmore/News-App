@@ -1,9 +1,13 @@
 .container {
-	width: 100%;
+	width: 86%;
 	height: 100vh;
 	position: relative;
 }
 
+section {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
 
 .menu {
   position: absolute;

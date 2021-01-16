@@ -12,14 +12,16 @@ const MainContent = ({ isOpen, toggleMenu, articles }) => {
 					<BurgerMenu />
 				</div>
 			}
-			{articles.length > 0 && articles.map((article, index) => {
-				return(
-					<Article 
-						key={index} 
-						article={article} 
-					/>
-				)
-			})}
+			<section>
+				{articles.length > 0 && articles.map((article, index) => {
+					return(
+						<Article 
+							key={index} 
+							article={article} 
+						/>
+					)
+				})}
+			</section>
 		</div>
 	)
 }
