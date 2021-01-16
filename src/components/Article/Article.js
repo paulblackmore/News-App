@@ -2,10 +2,9 @@ import React from 'react';
 import classes from './Article.module.css';
 
 const Article = ({ article }) => {
-  console.log('article', article)
   return(
     <div className={classes.container}>
-      { article.urlToImage && <img src={article.urlToImage}></img> }
+      <img src={article.urlToImage ? article.urlToImage : 'https://via.placeholder.com/350'} />
       <header>
         <span>{article.author ? article.author : 'Anonymous'}</span>
         <span>{article.publishedAt ? article.publishedAt : 'No Date'}</span>

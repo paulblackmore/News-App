@@ -8,6 +8,7 @@
 
 img {
   width: 370px;
+  margin-bottom: 5px;
 }
 
 header {
@@ -15,6 +16,8 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  font-style: italic;
+  font-weight: 200;
 }
 
 span {
