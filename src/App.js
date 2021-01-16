@@ -1,6 +1,6 @@
 import './App.css';
-import SidePanel from './Components/SidePanel/SidePanel';
-import MainContent from './Components/MainContent/MainContent';
+import SidePanel from './components/SidePanel/SidePanel';
+import MainContent from './components/MainContent/MainContent';
 
 const App = () => {
   return (
