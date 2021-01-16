@@ -15,22 +15,17 @@ const countries = [
 	'co'
 ]
 
-const SidePanel = () => {
+const SidePanel = ({ isOpen, toggleMenu }) => {
 	const [search, setSearch] = useState('');
 	const [country, setCountry] = useState('au');
 
-	const searchArticles = (event) => {
-		setSearch(event.target.value)
-	}
+	const searchArticles = (event) => setSearch(event.target.value);
+	const selectCountry = (event) => setCountry(event.target.value);
 
-	const selectCountry = (event) => {
-		setCountry(event.target.value)
-	}
-
-	return(
+	return !isOpen ? null : (
     <div className={classes.container}>
 			<div className={classes.header}>
-				<button>Close menu</button>
+				<button onClick={toggleMenu}>Close menu</button>
 			</div>
 			<input 
 				placeholder="Search articles..."
