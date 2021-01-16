@@ -36,6 +36,7 @@ const App = () => {
       <MainContent 
         isOpen={isOpen}
         toggleMenu={toggleMenu} 
+        articles={articles}
       />
     </div>
   );
