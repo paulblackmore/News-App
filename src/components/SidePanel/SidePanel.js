@@ -43,9 +43,6 @@ const SidePanel = () => {
 					)
 				})}
 			</select>
-			<button 
-				className={classes.btn}
-			>Headlines</button>
 		</div>
 	)
 }
