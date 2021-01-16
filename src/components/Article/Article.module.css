@@ -6,6 +6,16 @@
 
 }
 
+a {
+  text-decoration: none;
+  color: rgb(37, 37, 37);
+  border: 2px transparent solid;
+}
+
+a:hover {
+  border: 2px green solid;
+}
+
 img {
   width: 370px;
   margin-bottom: 5px;
@@ -16,11 +26,10 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-style: italic;
-  font-weight: 200;
 }
 
 span {
   font-size: 12px;
-  font-weight: 600;
+  font-style: italic;
+  font-weight: 300;
 }
