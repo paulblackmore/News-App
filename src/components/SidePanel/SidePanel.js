@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './SidePanel.module.css';
 
 const countries = [
@@ -16,13 +16,24 @@ const countries = [
 ]
 
 const SidePanel = () => {
+	const [search, setSearch] = useState('');
+	const [country, setCountry] = useState('au');
+
+	const searchArticles = (event) => {
+		setSearch(event.target.value)
+	}
+
+	const selectCountry = (event) => {
+		setCountry(event.target.value)
+	}
 
 	return(
     <div className={classes.container}>
 			<input 
 				placeholder="Search articles..."
+				onChange={searchArticles}
 			/>
-			<select name="countries">
+			<select name="countries" onChange={selectCountry}>
 				{countries.map((country, index) => 	{
 					return(
 						<option 
