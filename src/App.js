@@ -9,14 +9,14 @@ const App = () => {
   const [search, setSearch] = useState('');
   const [country, setCountry] = useState('au');
   const [category, setCategory] = useState('sports')
-  const [headlines, setHeadlines] = useState([]);
   const [articles, setArticles] = useState([])
+  const [headlineArray, setHeadlineArray] = useState([]);
 
   useEffect(() => searchHeadlines(search), [search])
   useEffect(() => fetchHeadlines(country, category), [country, category])
-  useEffect(() => splitArticlesByLimit(headlines), [headlines])
+  useEffect(() => splitArticlesByLimit(headlineArray), [headlineArray])
 
-  const toggleMenu = (isOpen) => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen(!isOpen);
   const searchArticles = (event) => setSearch(event.target.value);
   const selectCountry = (event) => setCountry(event.target.value);
   const selectCategory = (event) => setCategory(event.target.value);
@@ -24,20 +24,20 @@ const App = () => {
   const fetchHeadlines = async(country, category) => {
     if (country === '') return;
 		let data = await newsService.getHeadlines(country, category);
-		setHeadlines(data.articles);
+		setHeadlineArray(data.articles);
   }
 
   const searchHeadlines = async(search) => {
     if (search === '') return;
     let data = await newsService.search(search)
-		setHeadlines(data.articles);
+		setHeadlineArray(data.articles);
   }
   
-  const splitArticlesByLimit = (headlines) => {
-    if (headlines && headlines.length > 0) {
+  const splitArticlesByLimit = (headlineArray) => {
+    if (headlineArray && headlineArray.length > 0) {
       const limit = 10
-      const splitArticles = new Array(Math.ceil(headlines.length / limit))
-        .fill().map(_ => headlines.splice(0, limit));
+      const splitArticles = new Array(Math.ceil(headlineArray.length / limit))
+        .fill().map(_ => headlineArray.splice(0, limit));
       setArticles(splitArticles)
     }
   }
