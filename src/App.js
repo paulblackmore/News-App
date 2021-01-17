@@ -8,19 +8,30 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [search, setSearch] = useState('');
 	const [country, setCountry] = useState('au');
-	const [articles, setArticles] = useState([]);
+  const [headlines, setHeadlines] = useState([]);
+  const [articles, setArticles] = useState([])
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
 		loadHeadlines(country);
-	}, [country])
+  }, [country])
+  
+  useEffect(() => {
+    if (headlines.length > 0) {
+      setArticles(headlines.slice(page -1, limit))
+    }
+  }, [limit, page])
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const handlePage = (num) => setPage(num);
+  const handleLimit = (event) => setLimit(event.target.value);
   const searchArticles = (event) => setSearch(event.target.value);
 	const selectCountry = (event) => setCountry(event.target.value);
 
   const loadHeadlines = async() => {
 		let data = await getHeadlines(country);
-		setArticles(data.articles)
+		setHeadlines(data.articles)
 	}
 	
   return (
@@ -32,9 +43,13 @@ const App = () => {
         selectCountry={selectCountry} 
       />
       <MainContent 
+        page={page}
+        limit={limit}
         isOpen={isOpen}
-        toggleMenu={toggleMenu} 
         articles={articles}
+        toggleMenu={toggleMenu} 
+        handlePage={handlePage}
+        handleLimit={handleLimit}
       />
     </div>
   );

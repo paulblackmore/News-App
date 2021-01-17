@@ -3,7 +3,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Article from '../Article/Article';
 import classes from './MainContent.module.css';
 
-const MainContent = ({ isOpen, toggleMenu, articles }) => {
+const MainContent = ({ isOpen, toggleMenu, articles, handleLimit }) => {
 
 	return(
     <div className={classes.container}>
@@ -14,6 +14,10 @@ const MainContent = ({ isOpen, toggleMenu, articles }) => {
 					</div>
 				}
 				<div className={classes.pagination}>
+					<input 
+						placeholder="Results to page"
+						onChange={handleLimit} 
+					/>
 					<button>Back</button>
 					<button>Next</button>
 				</div>
