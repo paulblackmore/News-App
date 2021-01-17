@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Article from '../Article/Article';
 import classes from './MainContent.module.css';
 
-const MainContent = ({ isOpen, toggleMenu, articles, handleLimit }) => {
+const MainContent = ({ isOpen, toggleMenu, articles, limit, handleLimit }) => {
+	const [index, setIndex] = useState(0);
+
+	const handleIndex = (index) => setIndex(index);
 
 	return(
     <div className={classes.container}>
@@ -14,17 +17,23 @@ const MainContent = ({ isOpen, toggleMenu, articles, handleLimit }) => {
 					</div>
 				}
 				<div className={classes.pagination}>
-					<input 
-						placeholder="Results to page"
+					<input
+						value={limit} 
 						onChange={handleLimit} 
 					/>
-					<button>Back</button>
-					<button>Next</button>
+					{articles.length > 0 && articles.map((array, i) => {
+						if (index === i) return;
+						return(
+							<button 
+								key={i}
+								onClick={() => handleIndex(i)}
+							>{i + 1}</button>
+						)
+					})}
 				</div>
-
 			</header>
 			<section>
-				{articles.length > 0 && articles.map((article, index) => {
+				{articles.length > 0 && articles[index].map((article, index) => {
 					return(
 						<Article 
 							key={index} 

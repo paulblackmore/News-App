@@ -37,11 +37,11 @@ section {
   align-self: center;
   justify-content: space-evenly;
   padding: 10px;
-  width: 250px;
 }
 
 .pagination input {
   margin-right: 10px;
+  width: 30px;
 }
 
 .pagination button {
@@ -49,12 +49,10 @@ section {
   background: rgb(48, 48, 48, 1);
   padding: 10px;
   border-radius: 5px;
+  margin-left: 10px;
+  width: 40px;
 }
 
 .pagination button:hover {
   background: rgb(48, 48, 48, 0.8);
-}
-
-.pagination button:last-child {
-  margin-left: 10px;
 }
