@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getHeadlines } from './service/service';
+import { newsService } from './service/service';
 import SidePanel from './components/SidePanel/SidePanel';
 import MainContent from './components/MainContent/MainContent';
 import './App.css';
@@ -11,6 +11,7 @@ const App = () => {
   const [headlines, setHeadlines] = useState([]);
   const [articles, setArticles] = useState([])
 
+  useEffect(() => searchHeadlines(search), [search])
   useEffect(() => fetchHeadlines(country), [country])
   useEffect(() => splitArticlesByLimit(headlines), [headlines])
 
@@ -18,13 +19,20 @@ const App = () => {
   const searchArticles = (event) => setSearch(event.target.value);
   const selectCountry = (event) => setCountry(event.target.value);
 
-  const fetchHeadlines = async() => {
-		let data = await getHeadlines(country);
+  const fetchHeadlines = async(country) => {
+    if (country === '') return;
+		let data = await newsService.get(country);
+		setHeadlines(data.articles);
+  }
+
+  const searchHeadlines = async(search) => {
+    if (search === '') return;
+    let data = await newsService.search(search)
 		setHeadlines(data.articles);
   }
   
   const splitArticlesByLimit = (headlines) => {
-    if (headlines.length > 0) {
+    if (headlines && headlines.length > 0) {
       const limit = 10
       const splitArticles = new Array(Math.ceil(headlines.length / limit))
         .fill().map(_ => headlines.splice(0, limit));
