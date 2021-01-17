@@ -10,38 +10,27 @@ const App = () => {
 	const [country, setCountry] = useState('au');
   const [headlines, setHeadlines] = useState([]);
   const [articles, setArticles] = useState([])
-  const [limit, setLimit] = useState(5);
-  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-		loadHeadlines(country);
-  }, [country])
-  
-  useEffect(() => {
-    let array = [...headlines];
-
-    if (limit !== '' && array.length > 0) {
-      const splitArticles = new Array(Math.ceil(array.length / limit))
-        .fill().map(_ => array.splice(0, limit));
-      setArticles(splitArticles)
-    }
-  }, [limit, page, headlines])
-
-  console.log('limit', limit)
+  useEffect(() => fetchHeadlines(country), [country])
+  useEffect(() => splitArticlesByLimit(headlines), [headlines])
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const handlePage = (num) => setPage(num);
   const searchArticles = (event) => setSearch(event.target.value);
   const selectCountry = (event) => setCountry(event.target.value);
-  
-  const handleLimit = (event) => {
-    setLimit(event.target.value)
-  };
 
-  const loadHeadlines = async() => {
+  const fetchHeadlines = async() => {
 		let data = await getHeadlines(country);
 		setHeadlines(data.articles);
-	}
+  }
+  
+  const splitArticlesByLimit = (headlines) => {
+    if (headlines.length > 0) {
+      const limit = 10
+      const splitArticles = new Array(Math.ceil(headlines.length / limit))
+        .fill().map(_ => headlines.splice(0, limit));
+      setArticles(splitArticles)
+    }
+  }
 	
   return(
     <div className="App">
@@ -52,13 +41,9 @@ const App = () => {
         selectCountry={selectCountry} 
       />
       <MainContent 
-        page={page}
-        limit={limit}
         isOpen={isOpen}
         articles={articles}
         toggleMenu={toggleMenu} 
-        handlePage={handlePage}
-        handleLimit={handleLimit}
       />
     </div>
   );
