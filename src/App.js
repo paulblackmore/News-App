@@ -7,21 +7,23 @@ import './App.css';
 const App = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [search, setSearch] = useState('');
-	const [country, setCountry] = useState('au');
+  const [country, setCountry] = useState('au');
+  const [category, setCategory] = useState('sports')
   const [headlines, setHeadlines] = useState([]);
   const [articles, setArticles] = useState([])
 
   useEffect(() => searchHeadlines(search), [search])
-  useEffect(() => fetchHeadlines(country), [country])
+  useEffect(() => fetchHeadlines(country, category), [country, category])
   useEffect(() => splitArticlesByLimit(headlines), [headlines])
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = (isOpen) => setIsOpen(!isOpen);
   const searchArticles = (event) => setSearch(event.target.value);
   const selectCountry = (event) => setCountry(event.target.value);
+  const selectCategory = (event) => setCategory(event.target.value);
 
-  const fetchHeadlines = async(country) => {
+  const fetchHeadlines = async(country, category) => {
     if (country === '') return;
-		let data = await newsService.get(country);
+		let data = await newsService.getHeadlines(country, category);
 		setHeadlines(data.articles);
   }
 
@@ -46,7 +48,8 @@ const App = () => {
         isOpen={isOpen}
         toggleMenu={toggleMenu}
         searchArticles={searchArticles}
-        selectCountry={selectCountry} 
+        selectCountry={selectCountry}
+        selectCategory={selectCategory} 
       />
       <MainContent 
         isOpen={isOpen}

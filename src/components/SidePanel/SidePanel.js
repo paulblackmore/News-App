@@ -15,7 +15,17 @@ const countries = [
 	'co'
 ]
 
-const SidePanel = ({ isOpen, toggleMenu, searchArticles, selectCountry }) => {
+const categories = [
+	'business',
+	'entertainment',
+	'general',
+	'health',
+	'science',
+	'sports',
+	'technology'
+]
+
+const SidePanel = ({ isOpen, toggleMenu, searchArticles, selectCountry, selectCategory }) => {
 	return !isOpen ? null : (
     <div className={classes.container}>
 			<div className={classes.header}>
@@ -32,6 +42,16 @@ const SidePanel = ({ isOpen, toggleMenu, searchArticles, selectCountry }) => {
 							key={index} 
 							value={country}
 						>{country}</option>
+					)
+				})}
+			</select>
+			<select name="categories" onChange={selectCategory}>
+				{categories.map((category, index) => 	{
+					return(
+						<option 
+							key={index} 
+							value={category}
+						>{category}</option>
 					)
 				})}
 			</select>
