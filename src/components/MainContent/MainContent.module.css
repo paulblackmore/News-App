@@ -4,6 +4,13 @@
 	position: relative;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+}
+
 section {
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -22,4 +29,26 @@ section {
   align-items: center;
   padding: 5px;
   cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+.pagination button {
+  color: #fff;
+  background: rgb(48, 48, 48, 1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  width: 80px;
+}
+
+.pagination button:hover {
+  background: rgb(48, 48, 48, 0.8);
 }
