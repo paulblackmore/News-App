@@ -68,7 +68,10 @@ const categories = [
 	'technology'
 ]
 
-const SidePanel = ({ isOpen, toggleMenu, searchArticles, selectCountry, selectCategory }) => {
+const SidePanel = ({ state, actions }) => {
+	const { isOpen  } = state;
+	const { toggleMenu, searchArticles, selectCountry, selectCategory } = actions;
+
 	return !isOpen ? null : (
     <div className={classes.container}>
 			<div className={classes.header}>

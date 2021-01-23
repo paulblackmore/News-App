@@ -3,7 +3,8 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Article from '../Article/Article';
 import classes from './MainContent.module.css';
 
-const MainContent = ({ isOpen, toggleMenu, articles }) => {
+const MainContent = ({ state }) => {
+	const { isOpen, toggleMenu, articles } = state;
 	const [index, setIndex] = useState(0);
 
 	const handleIndex = (index) => setIndex(index);
