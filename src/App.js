@@ -1,57 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { newsService } from './service/service';
+import React, { useEffect } from 'react';
+import { useData } from './service/service';
 import SidePanel from './components/SidePanel/SidePanel';
 import MainContent from './components/MainContent/MainContent';
 import './App.css';
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [search, setSearch] = useState('');
-	const [country, setCountry] = useState('au');
-  const [headlines, setHeadlines] = useState([]);
-  const [articles, setArticles] = useState([])
+  const { state, actions } = useData();
 
-  useEffect(() => searchHeadlines(search), [search])
-  useEffect(() => fetchHeadlines(country), [country])
-  useEffect(() => splitArticlesByLimit(headlines), [headlines])
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const searchArticles = (event) => setSearch(event.target.value);
-  const selectCountry = (event) => setCountry(event.target.value);
-
-  const fetchHeadlines = async(country) => {
-    if (country === '') return;
-		let data = await newsService.get(country);
-		setHeadlines(data.articles);
-  }
-
-  const searchHeadlines = async(search) => {
-    if (search === '') return;
-    let data = await newsService.search(search)
-		setHeadlines(data.articles);
-  }
-  
-  const splitArticlesByLimit = (headlines) => {
-    if (headlines && headlines.length > 0) {
-      const limit = 10
-      const splitArticles = new Array(Math.ceil(headlines.length / limit))
-        .fill().map(_ => headlines.splice(0, limit));
-      setArticles(splitArticles)
-    }
-  }
+  useEffect(() => actions.searchHeadlines(search), [search])
+  useEffect(() => actions.fetchHeadlines(country, category), [country, category])
+  useEffect(() => actions.splitArticlesByLimit(headlineArray), [headlineArray])
 	
   return(
     <div className="App">
       <SidePanel 
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-        searchArticles={searchArticles}
-        selectCountry={selectCountry} 
+        state={state}
+        actions={actions}
       />
       <MainContent 
-        isOpen={isOpen}
-        articles={articles}
-        toggleMenu={toggleMenu} 
+        state={state}
       />
     </div>
   );
