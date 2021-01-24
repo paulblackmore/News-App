@@ -1,47 +1,22 @@
-import React, { useEffect, useRef } from 'react';
-import { useDataState } from './useDataState';
-import { useViewState } from './useViewState';
+import React from 'react';
+import { useAppState } from './useAppState';
 import SidePanel from './SidePanel/SidePanel';
 import MainContent from './MainContent/MainContent';
 
 const Home = () => {
-  const { dataState, dataActions } = useDataState();
-  const { viewState, viewActions } = useViewState();
-
-  const { headlineArray } = dataState;
-  const { search, country, category } = viewState;
-  const { searchHeadlines, fetchHeadlines, splitArticlesByLimit } = dataActions;
-
-  // referenced state
-  const searchRef = useRef(search);
-  const countryRef = useRef(country);
-  const categoryRef = useRef(category);
-  const headlineArrayRef = useRef(headlineArray);
-
-  useEffect(() => {
-    searchRef.current = search;
-    countryRef.current = country;
-    categoryRef.current = category;
-    headlineArrayRef.current = headlineArray;
-  })
-
-  useEffect(() => searchHeadlines(searchRef.current), [searchHeadlines])
-
-  useEffect(() => fetchHeadlines(countryRef.current, categoryRef.current), [fetchHeadlines])
-
-  useEffect(() => splitArticlesByLimit(headlineArrayRef.current), [splitArticlesByLimit])
+  const { state, actions } = useAppState();
+  const { isOpen, articles } = state;
 	
   return(
     <>
       <SidePanel 
-        viewState={viewState}
-        dataState={dataState}
-        viewActions={viewActions}
+        isOpen={isOpen}
+        actions={actions}
       />
       <MainContent 
-        viewState={viewState}
-        dataState={dataState}
-        viewActions={viewActions}
+        isOpen={isOpen}
+        articles={articles}
+        actions={actions}
       />
     </>
   );

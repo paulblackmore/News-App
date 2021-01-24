@@ -2,19 +2,18 @@ import React from 'react';
 import { countries, categories } from '../../../data/defaultData';
 import classes from './SidePanel.module.css';
 
-const SidePanel = ({ viewState, viewActions }) => {
-	const { isOpen  } = viewState;
+const SidePanel = ({ isOpen, actions }) => {
 
 	return !isOpen ? null : (
     <div className={classes.container}>
 			<div className={classes.header}>
-				<button onClick={viewActions.toggleMenu}>Close menu</button>
+				<button onClick={actions.toggleMenu}>Close menu</button>
 			</div>
 			<input 
 				placeholder="Search articles..."
-				onChange={viewActions.searchArticles}
+				onChange={actions.searchArticles}
 			/>
-			<select name="countries" onChange={viewActions.selectCountry}>
+			<select name="countries" onChange={actions.selectCountry}>
 				{countries.map((country, index) => 	{
 					return(
 						<option 
@@ -24,7 +23,7 @@ const SidePanel = ({ viewState, viewActions }) => {
 					)
 				})}
 			</select>
-			<select name="categories" onChange={viewActions.selectCategory}>
+			<select name="categories" onChange={actions.selectCategory}>
 				{categories.map((category, index) => 	{
 					return(
 						<option 

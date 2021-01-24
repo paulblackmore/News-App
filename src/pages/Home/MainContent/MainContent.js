@@ -3,10 +3,8 @@ import BurgerMenu from '../../../components/BurgerMenu/BurgerMenu';
 import Article from '../../../components/Article/Article';
 import classes from './MainContent.module.css';
 
-const MainContent = ({ viewState, viewActions, dataState }) => {
+const MainContent = ({ isOpen, viewActions, articles }) => {
 	const [index, setIndex] = useState(0);
-	const { isOpen } = viewState;
-	const { articles } = dataState;
 
 	const handleIndex = (index) => setIndex(index);
 
