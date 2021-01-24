@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import Article from '../Article/Article';
+import BurgerMenu from '../../../components/BurgerMenu/BurgerMenu';
+import Article from '../../../components/Article/Article';
 import classes from './MainContent.module.css';
 
-const MainContent = ({ state }) => {
-	const { isOpen, toggleMenu, articles } = state;
+const MainContent = ({ isOpen, viewActions, articles }) => {
 	const [index, setIndex] = useState(0);
 
 	const handleIndex = (index) => setIndex(index);
@@ -13,7 +12,7 @@ const MainContent = ({ state }) => {
     <div className={classes.container}>
 			<div className={classes.header}>
 				{!isOpen && 
-					<div className={classes.menu} onClick={toggleMenu}>
+					<div className={classes.menu} onClick={viewActions.toggleMenu}>
 						<BurgerMenu />
 					</div>
 				}
@@ -21,7 +20,7 @@ const MainContent = ({ state }) => {
 					<span>{`Page ${index + 1}`}</span>
 					<div>
 						{articles.length > 0 && articles.map((_, i) => {
-							if (index === i) return;
+							if (index === i) return null;
 							return(
 								<button 
 									key={i}
