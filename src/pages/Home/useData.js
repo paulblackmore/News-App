@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { newsService } from '../service/service';
+import { newsService } from '../../service/service';
 
 const INITIAL_STATE = {
   articles: [],
@@ -73,7 +73,7 @@ const useData = () => {
     splitArticlesByLimit
   }
 
-  return { state, actions }
+  return { state, actions };
 }
 
 export { useData };

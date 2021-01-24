@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import Article from '../Article/Article';
+import BurgerMenu from '../../../components/BurgerMenu/BurgerMenu';
+import Article from '../../../components/Article/Article';
 import classes from './MainContent.module.css';
 
 const MainContent = ({ state }) => {
@@ -21,7 +21,7 @@ const MainContent = ({ state }) => {
 					<span>{`Page ${index + 1}`}</span>
 					<div>
 						{articles.length > 0 && articles.map((_, i) => {
-							if (index === i) return;
+							if (index === i) return null;
 							return(
 								<button 
 									key={i}
