@@ -1,12 +1,17 @@
 import React, { useEffect, useRef } from 'react';
-import { useData } from './useData';
+import { useDataState } from './useDataState';
+import { useViewState } from './useViewState';
 import SidePanel from './SidePanel/SidePanel';
 import MainContent from './MainContent/MainContent';
 
 const Home = () => {
-  const { state, actions } = useData();
-  const { search, country, category, headlineArray } = state;
-  const { searchHeadlines, fetchHeadlines, splitArticlesByLimit } = actions;
+  const { dataState, dataActions } = useDataState();
+  const { viewState, viewActions } = useViewState();
+
+  const { headlineArray } = dataState;
+  const { searchHeadlines, fetchHeadlines, splitArticlesByLimit } = dataActions;
+
+  const { search, country, category } = viewState;
 
   // referenced state
   const searchRef = useRef(search);
@@ -30,11 +35,14 @@ const Home = () => {
   return(
     <>
       <SidePanel 
-        state={state}
-        actions={actions}
+        viewState={viewState}
+        dataState={dataState}
+        viewActions={viewActions}
       />
       <MainContent 
-        state={state}
+        viewState={viewState}
+        dataState={dataState}
+        viewActions={viewActions}
       />
     </>
   );

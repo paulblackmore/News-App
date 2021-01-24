@@ -3,9 +3,11 @@ import BurgerMenu from '../../../components/BurgerMenu/BurgerMenu';
 import Article from '../../../components/Article/Article';
 import classes from './MainContent.module.css';
 
-const MainContent = ({ state }) => {
-	const { isOpen, toggleMenu, articles } = state;
+const MainContent = ({ viewState, viewActions, dataState }) => {
 	const [index, setIndex] = useState(0);
+	const { isOpen } = viewState;
+	const { articles } = dataState;
+	
 
 	const handleIndex = (index) => setIndex(index);
 
@@ -13,7 +15,7 @@ const MainContent = ({ state }) => {
     <div className={classes.container}>
 			<div className={classes.header}>
 				{!isOpen && 
-					<div className={classes.menu} onClick={toggleMenu}>
+					<div className={classes.menu} onClick={viewActions.toggleMenu}>
 						<BurgerMenu />
 					</div>
 				}
