@@ -7,7 +7,6 @@ const MainContent = ({ viewState, viewActions, dataState }) => {
 	const [index, setIndex] = useState(0);
 	const { isOpen } = viewState;
 	const { articles } = dataState;
-	
 
 	const handleIndex = (index) => setIndex(index);
 

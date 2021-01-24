@@ -9,9 +9,8 @@ const Home = () => {
   const { viewState, viewActions } = useViewState();
 
   const { headlineArray } = dataState;
-  const { searchHeadlines, fetchHeadlines, splitArticlesByLimit } = dataActions;
-
   const { search, country, category } = viewState;
+  const { searchHeadlines, fetchHeadlines, splitArticlesByLimit } = dataActions;
 
   // referenced state
   const searchRef = useRef(search);
